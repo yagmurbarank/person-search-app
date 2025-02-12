@@ -1,4 +1,4 @@
-package com.yagmurbaran.views.helloworld;
+package com.yagmurbaran.views;
 
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
@@ -9,7 +9,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 @PageTitle("Hello World")
-@Route("")
+@Route("hello-world")
 public class HelloWorldView extends HorizontalLayout {
 
     private TextField name;

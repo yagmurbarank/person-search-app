@@ -1,32 +1,108 @@
-# person-search-app
+# Spring Boot Vaadin Application: Person Search App
 
-This project can be used as a starting point to create your own Vaadin application with Spring Boot.
-It contains all the necessary configuration and some placeholder files to get you started.
+This is a simple Spring Boot application built with Vaadin, providing a basic staff directory with name filtering.
 
-## Running the application
+## Features
 
-Open the project in an IDE. You can download the [IntelliJ community edition](https://www.jetbrains.com/idea/download) if you do not have a suitable IDE already.
-Once opened in the IDE, locate the `Application` class and run the main method using "Debug".
+*   **Home Page:** A simple "Hello World" page.
+*   **About Page:** An "About" page (potentially with company information, etc.)
+*   **Staff Page:**
+  *   Displays a list of staff members.
+  *   Allows filtering by name (first or last name).
+  *   Utilizes a database for storing and retrieving staff data (likely using Spring Data JPA).
+  *   Uses dummy data for initial setup.
 
-For more information on installing in various IDEs, see [how to import Vaadin projects to different IDEs](https://vaadin.com/docs/latest/getting-started/import).
+## Screenshots
 
-If you install the Vaadin plugin for IntelliJ, you should instead launch the `Application` class using "Debug using HotswapAgent" to see updates in the Java code immediately reflected in the browser.
+*   **Example Home Page:**
 
-## Deploying to Production
+    ![Home Page Screenshot](https://github.com/yagmurbarank/person-search-app/img/1.PNG)
+*   **Example Staff Page:**
 
-The project is a standard Maven project. To create a production build, call 
+    ![Staff Page Screenshot](https://github.com/yagmurbarank/person-search-app/img/4.PNG)
 
-```
-./mvnw clean package -Pproduction
-```
+*   **Example Filtering:**
 
-If you have Maven globally installed, you can replace `./mvnw` with `mvn`.
+    ![Filtering Screenshot](https://github.com/yagmurbarank/person-search-app/img/5.PNG)
 
-This will build a JAR file with all the dependencies and front-end resources,ready to be run. The file can be found in the `target` folder after the build completes.
-You then launch the application using 
-```
-java -jar target/person-search-1.0-SNAPSHOT.jar
-```
+*   **Example About Page:**
+
+    ![About Page Screenshot](https://github.com/yagmurbarank/person-search-app/img/2.PNG)
+
+*   **Example Hello Page:**
+
+    ![Hello Page Screenshot](https://github.com/yagmurbarank/person-search-app/img/3.PNG)
+
+
+## Technologies Used
+
+*   **Java:** Programming language
+*   **Spring Boot:** Framework for building Java applications
+*   **Vaadin:** UI framework for creating web applications
+*   **Spring Data JPA:** Data access layer for interacting with the database
+*   **Maven:** Build tool
+
+
+## Prerequisites
+
+*   **Java Development Kit (JDK):** Version 17 or higher (as required by Spring Boot and Vaadin).  Download from [https://www.oracle.com/java/technologies/javase-jdk17-downloads.html](https://www.oracle.com/java/technologies/javase-jdk17-downloads.html) or use an open-source distribution like [https://adoptium.net/](https://adoptium.net/).
+*   **Maven:** Build automation tool.  Download from [https://maven.apache.org/download.cgi](https://maven.apache.org/download.cgi).
+
+## Setup and Installation
+
+1.  **Clone the Repository:**
+
+    ```
+    git clone https://github.com/yagmurbarank/person-search-app
+    cd [your repository directory]
+    ```
+
+2.  **Configure the Database:**
+
+  *   Update the `application.properties` or `application.yml` file in the `src/main/resources` directory with your database connection details.
+  *   Example (`application.properties` for H2 database):
+
+      ```
+      spring.datasource.url=jdbc:h2:file:./data/staffdb
+      spring.datasource.username=sa
+      spring.datasource.password=
+      spring.jpa.hibernate.ddl-auto=update  # Automatically update schema
+      spring.h2.console.enabled=true #Enable the H2 Console
+      spring.h2.console.path=/h2-console #Set the path
+      ```
+
+  *   If using H2, you can access the H2 console at `http://localhost:8081/h2-console` (assuming you have the line added from above and that the application runs on port 8081). You'll need to set the JDBC URL to `jdbc:h2:file:./data/staffdb`.
+3.  **Build the Application:**
+
+    ```
+    mvn clean install
+    ```
+
+4.  **Run the Application:**
+
+    ```
+    mvn spring-boot:run
+    ```
+
+    Alternatively, you can run the JAR file created in the `target` directory:
+
+    ```
+    java -jar target/[your-application-name].jar
+    ```
+
+5.  **Access the Application:**
+
+    Open your web browser and navigate to:
+
+  *   **Home Page:** `http://localhost:8081/`
+  *   **Hello World Page:** `http://localhost:8081/hello-world`
+  *   **About Page:** `http://localhost:8081/about`
+  *   **Staff Page:** `http://localhost:8081/staff`
+
+## Usage
+
+*   **Staff Page:**  On the Staff Page, you'll see a list of staff members.  Use the search bar to filter the list by name.
+
 
 ## Project structure
 

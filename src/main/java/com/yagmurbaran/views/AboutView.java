@@ -1,4 +1,4 @@
-package com.yagmurbaran.views.about;
+package com.yagmurbaran.views;
 
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Image;
