@@ -5,4 +5,3 @@ public class DatabaseAccessException extends RuntimeException {
     super(message, cause);
   }
 }
-

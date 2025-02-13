@@ -16,7 +16,12 @@ import com.vaadin.flow.spring.data.VaadinSpringDataHelpers;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 import com.yagmurbaran.entity.Staff;
 import com.yagmurbaran.services.StaffService;
-import jakarta.persistence.criteria.*;
+import io.micrometer.common.lang.NonNull;
+import io.micrometer.common.lang.Nullable;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.util.ArrayList;
@@ -78,7 +83,9 @@ public class StaffView extends Div {
 
 
         @Override
-        public Predicate toPredicate(Root<Staff> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+        public Predicate toPredicate(@NonNull Root<Staff> root,
+                                     @Nullable CriteriaQuery<?> query,
+                                     @NonNull CriteriaBuilder criteriaBuilder) {
             List<Predicate> predicates = new ArrayList<>();
             if (!name.isEmpty()) {
                 String lowerCaseFilter = name.getValue().toLowerCase();

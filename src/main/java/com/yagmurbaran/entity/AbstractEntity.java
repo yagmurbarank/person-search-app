@@ -11,9 +11,9 @@ import jakarta.persistence.Version;
 public abstract class AbstractEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idgenerator")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idGenerator")
 
-    @SequenceGenerator(name = "idgenerator", initialValue = 1000)
+    @SequenceGenerator(name = "idGenerator", initialValue = 1000)
     private Long id;
 
     @Version
