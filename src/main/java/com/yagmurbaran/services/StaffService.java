@@ -11,7 +11,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class StaffService {
@@ -21,14 +21,6 @@ public class StaffService {
     public StaffService(StaffRepository repository) {
         this.repository = repository;
         addDummyData();
-    }
-
-    public Optional<Staff> get(Long id) {
-        try {
-            return repository.findById(id);
-        } catch (DataAccessException e) {
-            throw new DatabaseAccessException("Error accessing database while retrieving staff with id: " + id, e);
-        }
     }
 
     public Page<Staff> list(Pageable pageable) {
@@ -50,7 +42,6 @@ public class StaffService {
             throw new ServiceException("Unexpected error retrieving filtered staff list.", e);
         }
     }
-
 
     private void addDummyData() {
         try {
@@ -83,4 +74,3 @@ public class StaffService {
         return staff;
     }
 }
-
