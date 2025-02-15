@@ -1,4 +1,4 @@
-package com.yagmurbaran.services;
+package com.yagmurbaran.service;
 
 import com.yagmurbaran.entity.Staff;
 import com.yagmurbaran.exception.DatabaseAccessException;
@@ -48,15 +48,15 @@ public class StaffService {
             if (repository.count() == 0) { // Prevent duplicate entries
                 List<Staff> dummyPersons = List.of(
                         createPerson("12345678901", "John", "Smith"),
-                        createPerson("23456789012", "Emily", "Brown"),
+                        createPerson("23456789013", "Emily", "Brown"),
                         createPerson("34567890123", "Michael", "Davis"),
-                        createPerson("45678901234", "Jessica", "Wilson"),
+                        createPerson("45678901235", "Jessica", "Wilson"),
                         createPerson("56789012345", "David", "Garcia"),
-                        createPerson("67890123456", "Ashley", "Rodriguez"),
+                        createPerson("67890123457", "Ashley", "Rodriguez"),
                         createPerson("78901234567", "Christopher", "Martinez"),
-                        createPerson("89012345678", "Brittany", "Anderson"),
+                        createPerson("89012345679", "Brittany", "Anderson"),
                         createPerson("90123456789", "Daniel", "Taylor"),
-                        createPerson("01234567890", "Amanda", "Moore")
+                        createPerson("01234567891", "Amanda", "Moore")
                 );
                 repository.saveAll(dummyPersons);
             }
@@ -72,5 +72,16 @@ public class StaffService {
         staff.setFirstName(firstName);
         staff.setLastName(lastName);
         return staff;
+    }
+
+    public void addStaff(String identityNumber, String firstName, String lastName) {
+        try {
+            Staff newStaff = createPerson(identityNumber, firstName, lastName);
+            repository.save(newStaff); // Save the new staff person
+        } catch (DataAccessException e) {
+            throw new DatabaseAccessException("Error accessing database while adding new staff.", e);
+        } catch (Exception e) {
+            throw new ServiceException("Unexpected error adding new staff.", e);
+        }
     }
 }
