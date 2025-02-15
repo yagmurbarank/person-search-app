@@ -1,4 +1,4 @@
-package com.yagmurbaran.views;
+package com.yagmurbaran.view;
 
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
