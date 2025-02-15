@@ -1,5 +1,6 @@
-package com.yagmurbaran.views;
+package com.yagmurbaran.view;
 
+import com.github.javaparser.quality.Nullable;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -15,9 +16,9 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.spring.data.VaadinSpringDataHelpers;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 import com.yagmurbaran.entity.Staff;
-import com.yagmurbaran.services.StaffService;
+import com.yagmurbaran.presenter.StaffPresenter;
+import com.yagmurbaran.service.StaffService;
 import io.micrometer.common.lang.NonNull;
-import io.micrometer.common.lang.Nullable;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
@@ -26,6 +27,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.StreamSupport;
 
 @PageTitle("Person")
 @Route("staff")
@@ -33,30 +35,64 @@ import java.util.List;
 public class StaffView extends Div {
 
     private Grid<Staff> grid;
-
     private final Filters filters;
-    private final StaffService staffService;
+    private final StaffPresenter presenter;
 
-    public StaffView(StaffService StaffService) {
-        this.staffService = StaffService;
+    public StaffView(StaffService staffService, StaffPresenter presenter) {
+        this.presenter = presenter;
+        this.filters = new Filters(this::refreshGrid);
         setSizeFull();
         addClassNames("person-view");
 
-        filters = new Filters(this::refreshGrid);
         VerticalLayout layout = new VerticalLayout(filters, createGrid());
         layout.setSizeFull();
         layout.setPadding(false);
         layout.setSpacing(false);
         add(layout);
+
+        // Add Refresh Button to bottom-right corner
+        add(createRefreshButton());
+    }
+
+    private Component createGrid() {
+        grid = new Grid<>(Staff.class, false);
+        grid.addColumn("firstName").setAutoWidth(true);
+        grid.addColumn("lastName").setAutoWidth(true);
+
+        grid.setItems(query -> {
+            return StreamSupport.stream(presenter.getStaffList(VaadinSpringDataHelpers.toSpringPageRequest(query), filters).spliterator(), false);
+        });
+        grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
+        grid.addClassNames(LumoUtility.Border.TOP, LumoUtility.BorderColor.CONTRAST_10);
+
+        return grid;
+    }
+
+    private void refreshGrid() {
+
+        grid.getDataProvider().refreshAll();
+    }
+
+    private Component createRefreshButton() {
+        Button refreshButton = new Button("Refresh", e -> {
+            presenter.addDummyPerson();
+            refreshGrid();
+        });
+        refreshButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        refreshButton.getElement().getStyle().set("position", "absolute");
+        refreshButton.getElement().getStyle().set("bottom", "20px");
+        refreshButton.getElement().getStyle().set("right", "20px");
+        refreshButton.getElement().getStyle().set("z-index", "1000");
+        add(refreshButton);
+
+        return refreshButton;
     }
 
     public static class Filters extends Div implements Specification<Staff> {
 
-        private final TextField name = new TextField("Name");
-
+        public final TextField name = new TextField("Name");
 
         public Filters(Runnable onSearch) {
-
             setWidthFull();
             addClassName("filter-layout");
             addClassNames(LumoUtility.Padding.Horizontal.LARGE, LumoUtility.Padding.Vertical.MEDIUM,
@@ -67,12 +103,14 @@ public class StaffView extends Div {
             Button resetBtn = new Button("Reset");
             resetBtn.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
             resetBtn.addClickListener(e -> {
-                name.clear();
-                onSearch.run();
+                name.clear(); // Clear filter field
+                onSearch.run(); // Trigger search action
             });
             Button searchBtn = new Button("Search");
             searchBtn.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-            searchBtn.addClickListener(e -> onSearch.run());
+            searchBtn.addClickListener(e -> {
+                onSearch.run();  // Trigger search action
+            });
 
             Div actions = new Div(resetBtn, searchBtn);
             actions.addClassName(LumoUtility.Gap.SMALL);
@@ -80,7 +118,6 @@ public class StaffView extends Div {
 
             add(name, actions);
         }
-
 
         @Override
         public Predicate toPredicate(@NonNull Root<Staff> root,
@@ -95,28 +132,7 @@ public class StaffView extends Div {
                         lowerCaseFilter + "%");
                 predicates.add(criteriaBuilder.or(firstNameMatch, lastNameMatch));
             }
-
             return criteriaBuilder.and(predicates.toArray(Predicate[]::new));
         }
-
-
     }
-
-    private Component createGrid() {
-        grid = new Grid<>(Staff.class, false);
-        grid.addColumn("firstName").setAutoWidth(true);
-        grid.addColumn("lastName").setAutoWidth(true);
-
-        grid.setItems(query -> staffService.list(VaadinSpringDataHelpers.toSpringPageRequest(query), filters)
-                .stream());
-        grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
-        grid.addClassNames(LumoUtility.Border.TOP, LumoUtility.BorderColor.CONTRAST_10);
-
-        return grid;
-    }
-
-    private void refreshGrid() {
-        grid.getDataProvider().refreshAll();
-    }
-
 }
