@@ -12,6 +12,7 @@ This is a simple Spring Boot application built with Vaadin, providing a basic st
 
 * Displays a list of staff members.
 * Allows filtering by name (first or last name).
+* Allows adding new staff members through refresh button.
 * Utilizes a database for storing and retrieving staff data (likely using Spring Data JPA).
 * Uses dummy data for initial setup.
 
@@ -85,22 +86,22 @@ Alternatively, run the JAR file created in the `target` directory:
 
 ## Screenshots
 
-* **Example Home Page:**
+* **Home Page:**
 
   ![Home Page Screenshot](https://github.com/yagmurbarank/person-search-app/blob/main/img/1.PNG)
-* **Example Staff Page:**
+* **Staff Page:**
 
   ![Staff Page Screenshot](https://github.com/yagmurbarank/person-search-app/blob/main/img/4.PNG)
 
-* **Example Filtering:**
+* **Filtering:**
 
   ![Filtering Screenshot](https://github.com/yagmurbarank/person-search-app/blob/main/img/5.PNG)
 
-* **Example About Page:**
+* **About Page:**
 
   ![About Page Screenshot](https://github.com/yagmurbarank/person-search-app/blob/main/img/2.PNG)
 
-* **Example Hello Page:**
+* **Hello Page:**
 
   ![Hello Page Screenshot](https://github.com/yagmurbarank/person-search-app/blob/main/img/3.PNG)
 
