@@ -16,7 +16,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.spring.data.VaadinSpringDataHelpers;
 import com.vaadin.flow.theme.lumo.LumoUtility;
-import com.yagmurbaran.entity.Staff;
+import com.yagmurbaran.model.Staff;
 import com.yagmurbaran.presenter.StaffPresenter;
 import io.micrometer.common.lang.NonNull;
 import jakarta.persistence.criteria.CriteriaBuilder;

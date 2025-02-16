@@ -1,6 +1,6 @@
 package com.yagmurbaran.presenter;
 
-import com.yagmurbaran.entity.Staff;
+import com.yagmurbaran.model.Staff;
 import com.yagmurbaran.service.StaffService;
 import com.yagmurbaran.view.StaffView;
 import org.springframework.data.domain.PageRequest;

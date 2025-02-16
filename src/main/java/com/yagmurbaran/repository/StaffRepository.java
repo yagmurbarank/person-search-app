@@ -1,6 +1,6 @@
 package com.yagmurbaran.repository;
 
-import com.yagmurbaran.entity.Staff;
+import com.yagmurbaran.model.Staff;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;

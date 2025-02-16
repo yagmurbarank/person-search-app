@@ -1,6 +1,6 @@
 package com.yagmurbaran.service;
 
-import com.yagmurbaran.entity.Staff;
+import com.yagmurbaran.model.Staff;
 import com.yagmurbaran.exception.DatabaseAccessException;
 import com.yagmurbaran.exception.ServiceException;
 import com.yagmurbaran.repository.StaffRepository;
