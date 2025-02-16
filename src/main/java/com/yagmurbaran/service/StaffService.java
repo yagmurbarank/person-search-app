@@ -84,4 +84,7 @@ public class StaffService {
             throw new ServiceException("Unexpected error adding new staff.", e);
         }
     }
+    public void deleteStaff(Staff staff) {
+        repository.delete(staff);
+    }
 }

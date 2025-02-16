@@ -11,7 +11,6 @@ import java.util.ListIterator;
 
 @Component
 public class StaffPresenter {
-
     private final StaffService staffService;
     private ListIterator<String[]> dummyDataIterator;
 
@@ -41,11 +40,17 @@ public class StaffPresenter {
         }
     }
 
+    public void deleteStaff(Staff staff) {
+        staffService.deleteStaff(staff);
+    }
     private void resetDummyDataIterator() {
         List<String[]> dummyData = List.of(
                 new String[]{"11223344559", "John", "Doe"},
                 new String[]{"11223344556", "Ada", "Lovelace"},
-                new String[]{"11223344551", "Marie", "Curie"}
+                new String[]{"11223344551", "Marie", "Curie"},
+                new String[]{"11223344553", "John", "Reese"},
+                new String[]{"11223344555", "Harold", "Finch"},
+                new String[]{"11223344557", "Walter", "Bishop"}
         );
 
         dummyDataIterator = dummyData.listIterator();
