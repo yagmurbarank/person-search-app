@@ -13,6 +13,7 @@ This is a simple Spring Boot application built with Vaadin, providing a basic st
 * Displays a list of staff members.
 * Allows filtering by name (first or last name).
 * Allows adding new staff members through refresh button.
+* Allows deleting staff from grid through delete button.
 * Utilizes a database for storing and retrieving staff data (likely using Spring Data JPA).
 * Uses dummy data for initial setup.
 
@@ -71,18 +72,32 @@ Alternatively, run the JAR file created in the `target` directory:
 - **Staff Page:** [http://localhost:8081/staff](http://localhost:8081/staff)
 
 ## Usage
+This section outlines how to interact with the key features related to staff management within the application.
 
-- Navigate to the **Staff Page** to view the list of staff members.
-- Use the search bar to filter staff by first or last name.
 
-## Project structure
+- **Filtering Staff:** Utilize the search bar (located at the top of the staff list) to filter the displayed staff members by entering a first name or last name. The list will dynamically update to show only matching results.
 
-- `MainLayout.java` in `src/main/java` contains the navigation setup (i.e., the
-  side/top bar and the main menu). This setup uses
-  [App Layout](https://vaadin.com/docs/components/app-layout).
-- `views` package in `src/main/java` contains the server-side Java views of your application.
-- `views` folder in `src/main/frontend` contains the client-side JavaScript views of your application.
-- `themes` folder in `src/main/frontend` contains the custom CSS styles.
+- **Refreshing Staff Data:** To ensure you have the most up-to-date staff information, use the "Refresh" button, in the bottom-right corner of the screen. This action will reload the staff data from the server. Note that refresh button adds new data for now.
+
+- **Deleting Staff Members:** Select a staff member from the list and click the "Delete" button to remove them from the system. 
+
+# Project Structure
+
+This project follows a modular architecture, prioritizing separation of concerns for enhanced clarity and maintainability.
+
+### **Packages:** 
+- **`view` package in `src/main/java`**: Contains server-side Java views, representing different screens/sections of the application's user interface.
+
+- **`repository` package in `src/main/java`**: Implements the data access layer with Spring Data JPA, providing interfaces for CRUD operations on entities.
+
+- **`service` package in `src/main/java`**: Encompasses the application's business logic, managing data, coordinating component interactions, and enforcing business rules.
+
+- **`presenter` package in `src/main/java`**: Manages presentation logic, acting as an intermediary between views and services for data retrieval, formatting, and user interaction handling.
+
+- **`model` package in `src/main/java`**: Houses Data Transfer Objects (DTOs) or ViewModels, decoupling views from underlying data entities.
+
+- **`exception` package in `src/main/java`**: Contains custom exception classes, providing a consistent approach to error handling.
+
 
 ## Screenshots
 
