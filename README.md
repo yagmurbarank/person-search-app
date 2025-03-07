@@ -4,7 +4,9 @@ This is a simple Spring Boot application built with Vaadin, providing a basic st
 
 ## Features
 
-**Home Page:** A simple "Hello World" page.
+**Home Page:** A navbar Menu to show pages.
+
+**Login Page:** A simple "Login" page.
 
 **About Page:** An "About" page (potentially with company information, etc.)
 
@@ -19,9 +21,9 @@ This is a simple Spring Boot application built with Vaadin, providing a basic st
 
 ## Technologies
 
-* **Java (Version 17):** Programming language 
-* **Spring Boot (Version 3.4.2):** Framework for building Java applications. 
-* **Vaadin (Version 24.6.5):** UI framework for creating web applications. 
+* **Java (Version 17):** Programming language
+* **Spring Boot (Version 3.4.2):** Framework for building Java applications.
+* **Vaadin (Version 24.6.5):** UI framework for creating web applications.
 * **Spring Data JPA (Version 3.4.2):** Data access layer for interacting with the database.
 * **Maven (Version 4.0.0):** Project dependency management and compilation operations.
 
@@ -72,38 +74,54 @@ Alternatively, run the JAR file created in the `target` directory:
 - **Staff Page:** [http://localhost:8081/staff](http://localhost:8081/staff)
 
 ## Usage
+
 This section outlines how to interact with the key features related to staff management within the application.
 
+- **Filtering Staff:** Utilize the search bar (located at the top of the staff list) to filter the displayed staff
+  members by entering a first name or last name. The list will dynamically update to show only matching results.
 
-- **Filtering Staff:** Utilize the search bar (located at the top of the staff list) to filter the displayed staff members by entering a first name or last name. The list will dynamically update to show only matching results.
+- **Refreshing Staff Data:** To ensure you have the most up-to-date staff information, use the "Refresh" button, in the
+  bottom-right corner of the screen. This action will reload the staff data from the server. Note that refresh button
+  adds new data for now.
 
-- **Refreshing Staff Data:** To ensure you have the most up-to-date staff information, use the "Refresh" button, in the bottom-right corner of the screen. This action will reload the staff data from the server. Note that refresh button adds new data for now.
-
-- **Deleting Staff Members:** Select a staff member from the list and click the "Delete" button to remove them from the system. 
+- **Deleting Staff Members:** Select a staff member from the list and click the "Delete" button to remove them from the
+  system.
 
 # Project Structure
 
-This project follows a modular architecture, prioritizing separation of concerns for enhanced clarity and maintainability.
+This project follows a modular architecture, prioritizing separation of concerns for enhanced clarity and
+maintainability.
 
-### **Packages:** 
-- **`view` package in `src/main/java`**: Contains server-side Java views, representing different screens/sections of the application's user interface.
+### **Packages:**
 
-- **`repository` package in `src/main/java`**: Implements the data access layer with Spring Data JPA, providing interfaces for CRUD operations on entities.
+- **`view` package in `src/main/java`**: Contains server-side Java views, representing different screens/sections of the
+  application's user interface.
 
-- **`service` package in `src/main/java`**: Encompasses the application's business logic, managing data, coordinating component interactions, and enforcing business rules.
+- **`repository` package in `src/main/java`**: Implements the data access layer with Spring Data JPA, providing
+  interfaces for CRUD operations on entities.
 
-- **`presenter` package in `src/main/java`**: Manages presentation logic, acting as an intermediary between views and services for data retrieval, formatting, and user interaction handling.
+- **`service` package in `src/main/java`**: Encompasses the application's business logic, managing data, coordinating
+  component interactions, and enforcing business rules.
 
-- **`model` package in `src/main/java`**: Houses Data Transfer Objects (DTOs) or ViewModels, decoupling views from underlying data entities.
+- **`presenter` package in `src/main/java`**: Manages presentation logic, acting as an intermediary between views and
+  services for data retrieval, formatting, and user interaction handling.
 
-- **`exception` package in `src/main/java`**: Contains custom exception classes, providing a consistent approach to error handling.
+- **`model` package in `src/main/java`**: Houses Data Transfer Objects (DTOs) or ViewModels, decoupling views from
+  underlying data entities.
 
+- **`exception` package in `src/main/java`**: Contains custom exception classes, providing a consistent approach to
+  error handling.
 
 ## Screenshots
 
 * **Home Page:**
 
-  ![Home Page Screenshot](https://github.com/yagmurbarank/person-search-app/blob/main/img/1.PNG)
+  ![Home Page Screenshot](https://github.com/yagmurbarank/person-search-app/blob/main/img/6.PNG)
+
+* **Login Page:**
+
+  ![Login Page Screenshot](https://github.com/yagmurbarank/person-search-app/blob/main/img/7.PNG)
+
 * **Staff Page:**
 
   ![Staff Page Screenshot](https://github.com/yagmurbarank/person-search-app/blob/main/img/4.PNG)
