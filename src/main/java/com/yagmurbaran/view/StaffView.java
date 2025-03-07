@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.stream.StreamSupport;
 
 @PageTitle("Staff")
-@Route("staff")
+@Route(value = "staff", layout = MainLayout.class)
 @Uses(Icon.class)
 public class StaffView extends Div {
 

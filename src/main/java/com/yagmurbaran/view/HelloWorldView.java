@@ -9,7 +9,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 @PageTitle("Hello World")
-@Route("hello-world")
+@Route(value= "hello-world", layout = MainLayout.class)
 public class HelloWorldView extends HorizontalLayout {
 
     private final TextField name;
